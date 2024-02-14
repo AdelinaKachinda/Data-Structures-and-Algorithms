@@ -56,6 +56,27 @@ public class BinaryTree
             
         }
 
+    // Search a binary tree for given target
+    public Node searchTree(int element)
+    {
+        Node focusNode = root;
+    
+        while(focusNode.val != element){
+            if (focusNode.val > element){
+                focusNode = focusNode.left;
+            } else {
+                focusNode = focusNode.right;
+            }
+
+            if (focusNode == null){
+                return null;
+            }
+        }
+
+        return focusNode;
+   
+    }
+
     // PRE ORDER TRVERSAL (ROOT LEFT RIGHT)
     public void preOrderTraversal(Node focusNode)
     {   
@@ -114,6 +135,8 @@ public class BinaryTree
         myTree.inOrderTraversal(root);
         System.out.println(" ");
         myTree.postOrderTraversal(root);
+        System.out.println(" ");
+        System.out.println("Found: " + myTree.searchTree(15));
 
     }
 
