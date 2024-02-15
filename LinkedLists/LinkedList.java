@@ -8,7 +8,6 @@ public class LinkedList
 
 	public LinkedList()
 	{
-		Node head;
 
 	}
 
