@@ -11,6 +11,14 @@ public class LinkedList
 
 	}
 
+	public void prepend(String data)
+	{
+		Node newNode = new Node(data);
+		newNode.next = head;
+		head = newNode;
+
+	}
+
 	public void add(String data)
 	{
 		/* if its null we add it and start from there. 
@@ -33,6 +41,28 @@ public class LinkedList
 
  		   }
 
+	}
+
+	public void delete(String value)
+	{
+
+		// Code on board
+		for (Node current = head; current.next != null; current = current.next)
+		{
+			if (current.next.data.equals(value))
+			{
+				current.next = current.next.next;
+			}
+		}
+
+		// My code
+		// for (Node current = head; current != null; current = current.next)
+		// {
+		// 	if (current.data.equals(value))
+		// 	{
+		// 		current.next = current.next.next;
+		// 	}
+		// }
 	}
 
 	public ArrayList<String> printList()
