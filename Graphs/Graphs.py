@@ -14,6 +14,12 @@ class Graphs:
         self.graph_dict.setdefault(vertex1, []).append(vertex2)
         self.graph_dict.setdefault(vertex2, []).append(vertex1)
 
+    
+    # Adjacency List
+    def adjacencyList(self):
+        return self.graph_dict
+
+
     # Edge List
     def edgeList(self):
         edges = []
@@ -31,16 +37,35 @@ class Graphs:
             
         return edges 
     
+    
     # Adjacency Matrix
     def adjacencyMatrix(self):
-        pass
+    
+        adjMatrix = []
 
-    # Adjacency List
-    def adjacencyList(self):
-        return self.graph_dict
+        num_vertices = len(self.graph_dict)
+
+        for i in range(num_vertices):
+
+            row = [0] * num_vertices
+            adjMatrix.append(row)
+
+
+        for pair in self.edgeList():
+            
+            curr = list(pair)
+            # print(curr)
+            r = int(curr[0])
+            c = int(curr[1])
+
+            adjMatrix[r][c] = 1
+        
+        return adjMatrix
+
 
 
 myGraph = Graphs()
+myGraph.addVertex("0")
 myGraph.addVertex("1")
 myGraph.addVertex("2")
 myGraph.addVertex("3")
@@ -57,6 +82,10 @@ myGraph.addEdge("0", "2")
 myGraph.addEdge("6", "5")
 
 print(myGraph.edgeList())
+print()
+print(myGraph.adjacencyList())
+print()
+print(myGraph.adjacencyMatrix())
 
       
 
