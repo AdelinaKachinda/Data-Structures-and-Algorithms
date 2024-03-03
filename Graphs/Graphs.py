@@ -1,30 +1,68 @@
-class Graph:
+class Graphs:
 
-    def __init__(self, edges):
-        self.edges = edges
+    def __init__(self):
         self.graph_dict = {}
-
-        for start, end in self.edges:     
-            if start not in self.graph_dict:
-                self.graph_dict[start] = [end]
-            else:
-                self.graph_dict[start] += [end]
+    
+    # adding a vertex or node
+    def addVertex(self, value):
         
-    def getPaths():
+        self.graph_dict.setdefault(value, [])
+
+    # adding an edge or line that connects two nodes
+    def addEdge(self, vertex1, vertex2):
+        
+        self.graph_dict.setdefault(vertex1, []).append(vertex2)
+        self.graph_dict.setdefault(vertex2, []).append(vertex1)
+
+    # Edge List
+    def edgeList(self):
+        edges = []
+
+        for key, value in self.graph_dict.items():
+
+            for item in value:
+
+                edge = (key, item)
+
+                if (item, key) in edges:
+                    continue
+                else:
+                    edges.append(edge)
+            
+        return edges 
+    
+    # Adjacency Matrix
+    def adjacencyMatrix(self):
         pass
-    
+
+    # Adjacency List
+    def adjacencyList(self):
+        return self.graph_dict
 
 
-if __name__ == '__main__':
-    routes = [
-        [0, 1], 
-        [2, 3],
-        [2, 1],
-        [1,3]
-        ]
-    
+myGraph = Graphs()
+myGraph.addVertex("1")
+myGraph.addVertex("2")
+myGraph.addVertex("3")
+myGraph.addVertex("4")
+myGraph.addVertex("5")
+myGraph.addVertex("6")
+myGraph.addEdge("3", "1")
+myGraph.addEdge("3", "4")
+myGraph.addEdge("4", "2")
+myGraph.addEdge("4", "5")
+myGraph.addEdge("1", "2")
+myGraph.addEdge("1", "0")
+myGraph.addEdge("0", "2")
+myGraph.addEdge("6", "5")
+
+print(myGraph.edgeList())
+
+      
 
 """
+EXPLANATIONS!!!!!1
+
 ####  Edge list is a list of lists showing how each element is connected to another in a
  graph This shows how the edges in the graph are connected to each other and that is why it is called an edge list.
 [
