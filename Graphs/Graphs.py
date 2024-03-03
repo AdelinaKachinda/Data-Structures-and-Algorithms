@@ -59,6 +59,7 @@ class Graphs:
             c = int(curr[1])
 
             adjMatrix[r][c] = 1
+            adjMatrix[c][r] = 1
         
         return adjMatrix
 
