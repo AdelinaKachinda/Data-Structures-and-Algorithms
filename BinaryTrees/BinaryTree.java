@@ -169,11 +169,16 @@ public class BinaryTree
         myTree.addNode(85);
         myTree.addNode(1);
 
+        System.out.println("preOrderTraversal");
         myTree.preOrderTraversal(root);
         System.out.println(" ");
+        System.out.println("inOrderTraversal");
         myTree.inOrderTraversal(root);
         System.out.println(" ");
+        System.out.println("postOrderTraversal");
         myTree.postOrderTraversal(root);
+        System.out.println(" ");
+        System.out.println("levelOrderTraveral");
         System.out.println(" ");
         System.out.println(myTree.levelOrderTraveral(root));
         System.out.println("Found: " + myTree.searchTree(15));
@@ -188,7 +193,7 @@ class Node
     int val;
     Node left;
     Node right;
-
+ 
     // gives each created node basic properties of left and right children.
     public Node(int val)
     {
