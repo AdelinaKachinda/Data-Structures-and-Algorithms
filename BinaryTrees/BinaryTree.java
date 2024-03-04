@@ -58,7 +58,7 @@ public class BinaryTree
         }
 
     // Search a binary tree for given target
-    public Node searchTree(int element)
+    public int searchTree(int element)
     {
         Node focusNode = root;
     
@@ -70,11 +70,11 @@ public class BinaryTree
             }
 
             if (focusNode == null){
-                return null;
+                return 0;
             }
         }
 
-        return focusNode;
+        return focusNode.val;
    
     }
 
@@ -169,14 +169,14 @@ public class BinaryTree
         myTree.addNode(85);
         myTree.addNode(1);
 
-        // myTree.preOrderTraversal(root);
-        // System.out.println(" ");
-        // myTree.inOrderTraversal(root);
-        // System.out.println(" ");
-        // myTree.postOrderTraversal(root);
-        // System.out.println(" ");
+        myTree.preOrderTraversal(root);
+        System.out.println(" ");
+        myTree.inOrderTraversal(root);
+        System.out.println(" ");
+        myTree.postOrderTraversal(root);
+        System.out.println(" ");
         System.out.println(myTree.levelOrderTraveral(root));
-        // System.out.println("Found: " + myTree.searchTree(15));
+        System.out.println("Found: " + myTree.searchTree(15));
 
     }
 
