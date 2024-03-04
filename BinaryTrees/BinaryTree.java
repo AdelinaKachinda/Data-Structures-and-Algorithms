@@ -1,4 +1,5 @@
 package BinaryTrees;
+import java.util.*;
 
 public class BinaryTree 
 {
@@ -117,6 +118,44 @@ public class BinaryTree
         }
     }
 
+    // LEVEL ORDER TRAVERSAL
+
+    public ArrayList<ArrayList<Integer>> levelOrderTraveral(Node focusNode)
+    {
+
+        if (focusNode == null) return new ArrayList<>(); 
+
+        Queue<Node> queue = new LinkedList<Node>();
+        ArrayList<ArrayList<Integer>> output = new ArrayList<>();
+
+        queue.add(focusNode);
+
+        while (!queue.isEmpty())
+        {
+            ArrayList<Integer> store = new ArrayList<>();
+
+            for (int i = 0; i < queue.size(); i++) 
+            {
+                Node current = queue.poll();
+                store.add(current.val);
+
+                if (current.left != null)
+                {
+                    queue.add(current.left);
+                }
+
+                if (current.right != null)
+                {
+                    queue.add(current.right);
+                } 
+            }
+            output.add(store);
+        }
+
+        return output;
+
+    }
+
  
     // Testing and running my code
     public static void main(String[] args)
@@ -130,13 +169,14 @@ public class BinaryTree
         myTree.addNode(85);
         myTree.addNode(1);
 
-        myTree.preOrderTraversal(root);
-        System.out.println(" ");
-        myTree.inOrderTraversal(root);
-        System.out.println(" ");
-        myTree.postOrderTraversal(root);
-        System.out.println(" ");
-        System.out.println("Found: " + myTree.searchTree(15));
+        // myTree.preOrderTraversal(root);
+        // System.out.println(" ");
+        // myTree.inOrderTraversal(root);
+        // System.out.println(" ");
+        // myTree.postOrderTraversal(root);
+        // System.out.println(" ");
+        System.out.println(myTree.levelOrderTraveral(root));
+        // System.out.println("Found: " + myTree.searchTree(15));
 
     }
 
