@@ -78,6 +78,8 @@ public class BinaryTree
    
     }
 
+    // RECURSION BEGINS 
+
     // PRE ORDER TRVERSAL (ROOT LEFT RIGHT)
     public void preOrderTraversal(Node focusNode)
     {   
@@ -118,6 +120,11 @@ public class BinaryTree
         }
     }
 
+    // RECURSION ENDS HERE
+
+
+    // ITERATION BEGINS
+
     // LEVEL ORDER TRAVERSAL
 
     public ArrayList<ArrayList<Integer>> levelOrderTraveral(Node focusNode)
@@ -156,6 +163,90 @@ public class BinaryTree
 
     }
 
+    // PRE ORDER TRVERSAL (ROOT LEFT RIGHT) - ITERATION
+
+    public ArrayList<Integer> preOrderTraversalIteration(Node focusNode)
+    {
+        Stack<Node> stack = new Stack<>();
+        ArrayList<Integer> output = new ArrayList<>();
+        Node curr = focusNode;
+        stack.push(curr);
+
+        while (!stack.isEmpty())
+
+        {
+            curr = stack.pop();
+            output.add(curr.val);
+            if (curr.right != null)
+            {
+                stack.push(curr.right);
+            }
+            if (curr.left != null)
+            {
+                stack.push(curr.left);
+            }
+        }
+
+        return output;
+
+    }
+
+
+    // IN ORDER TRAVERSAL (LEFT ROOT RIGHT) - ITERATION
+
+    public ArrayList<Integer> inOrderTraversalIteration(Node focusNode)
+    {
+        Stack<Node> stack = new Stack<>();
+        ArrayList<Integer> output = new ArrayList<>();
+        Node curr = focusNode;
+
+        while (!stack.isEmpty() || curr != null)
+        {
+            while (curr != null)
+            {
+                stack.add(curr);
+                curr = curr.left;
+            }
+
+            curr = stack.pop();
+            output.add(curr.val);
+            curr = curr.right;
+        }
+
+        return output;
+
+    }
+
+    // POST ORDER TRAVERSAL (LEFT ROOT RIGHT) - ITERATION
+
+    public ArrayList<Integer> postOrderTraversalIteration(Node focusNode)
+    {
+        Stack<Node> stack = new Stack<>();
+        ArrayList<Integer> output = new ArrayList<>();
+        Node curr = focusNode;
+        stack.push(focusNode);
+
+        while (!stack.isEmpty())
+        {
+           curr = stack.pop();
+           output.add(curr.val);
+           
+           if (curr.left != null)
+           {
+            stack.push(curr.left);
+           }
+           if (curr.right != null)
+           {
+            stack.push(curr.right);
+           }
+        }
+
+        Collections.reverse(output);
+        return output;
+
+    }
+
+
  
     // Testing and running my code
     public static void main(String[] args)
@@ -169,15 +260,31 @@ public class BinaryTree
         myTree.addNode(85);
         myTree.addNode(1);
 
+        //  Preorder traversal iteration and recursion 
         System.out.println("preOrderTraversal");
         myTree.preOrderTraversal(root);
         System.out.println(" ");
+        System.out.println("preOrderTraversalIterativeWay");
+        System.out.println(myTree.preOrderTraversalIteration(root));
+        System.out.println(" ");
+
+        // Inorder traversal iteration and recursion 
         System.out.println("inOrderTraversal");
         myTree.inOrderTraversal(root);
         System.out.println(" ");
+        System.out.println("inOrderTraversalIterativeWay");
+        System.out.println(myTree.inOrderTraversalIteration(root));
+        System.out.println(" ");
+
+        // Postorder traversal iteration and recursion 
         System.out.println("postOrderTraversal");
         myTree.postOrderTraversal(root);
         System.out.println(" ");
+        System.out.println("postOrderTraversalIterativeWay");
+        System.out.println(myTree.postOrderTraversalIteration(root));
+        System.out.println(" ");
+
+        // Levelorder traversal iteration 
         System.out.println("levelOrderTraveral");
         System.out.println(" ");
         System.out.println(myTree.levelOrderTraveral(root));
