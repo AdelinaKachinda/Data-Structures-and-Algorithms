@@ -15,7 +15,6 @@ class Graphs:
         self.graph_dict.setdefault(vertex2, []).append(vertex1)
 
 
-
     """
     BFS GRAPH TRAVERSAL - USES QUEUES
     1. Add a node/vertex from the graph to a queue of nodes to be “visited”.
@@ -25,10 +24,10 @@ class Graphs:
     5. Remove the node we've visited from the queue and mark it as visited.
     """
 
-    # ITERATIVE WAY
-    def bfsGraphTraversalIteration(self, start):
+    # BFS ITERATIVE WAY
+    def bfsIteration(self, node):
 
-        queue = [start]
+        queue = [node]
         visited = []
         output = []
 
@@ -47,17 +46,85 @@ class Graphs:
             
         return output 
 
-    # RECURSIVE WAY
+    # BFS RECURSIVE WAY   --- revisit
+    def bfsRecursion(self, node):
+        
+        visited = set()
+        output = []
+        
+        def bfs(node):
 
-    def bfsGraphTraversalRecursion():
-        pass
+            if self.graph_dict[node] == []:
+                return
+             
+            if node in visited:
+                return
+            
+            output.append(node)
+            visited.add(node)
 
+            for curr in self.graph_dict[node]:
+                bfs(curr)
 
+        bfs(node) 
+        return output
+            
 
 
     """
     DFS GRAPH TRAVERSAL - USES STACKS
+    1. Add the node to the top of the “visited” vertices stack.
+    2. Marked it as “visited”.
+    3. Check to see if it had any children:
+        if it did, we ensured that they had not been visited already, and then visited it. 
+        If not, we popped it off the stack.
+
+
     """
+
+    # DFS ITERATIVE WAY
+    def dfsIteration(self, node):
+        
+        stack = [node]
+        output = []
+        visited = set()
+
+        while stack:
+                
+                val = stack.pop()
+                output.append(val)
+                visited.add(val)
+
+                for curr in self.graph_dict[val]:
+                    if curr not in visited or curr not in stack:
+                        stack.append(curr)
+
+        return output
+
+                
+                
+    # DFS RECURSIVE WAY
+    def dfsRecursion(self, node):
+        
+        visited = set()
+        output = []
+        
+        def dfs(node):
+
+            if self.graph_dict[node] == []:
+                return
+             
+            if node in visited:
+                return
+            
+            output.append(node)
+            visited.add(node)
+
+            for curr in self.graph_dict[node]:
+                dfs(curr)
+
+        dfs(node) 
+        return output
 
 
     def printGraph(self):
@@ -81,5 +148,17 @@ myGraph.addEdge("0", "2")
 myGraph.addEdge("6", "5")
 
 print(myGraph.printGraph())
-print(myGraph.bfsGraphTraversal("0"))
+print()
+print("Breadth First Search..")
+print("Iteration")
+print(myGraph.bfsIteration("0"))
+print("recursion")
+print(myGraph.bfsRecursion("0"))
+
+print()
+print("Depth First Search..")
+print("Iteration")
+print(myGraph.dfsIteration("0"))
+print("recursion")
+print(myGraph.dfsRecursion("0"))
 
