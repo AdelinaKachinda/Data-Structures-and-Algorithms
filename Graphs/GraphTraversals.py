@@ -47,27 +47,8 @@ class Graphs:
         return output 
 
     # BFS RECURSIVE WAY   --- revisit
-    def bfsRecursion(self, node):
-        
-        visited = set()
-        output = []
-        
-        def bfs(node):
-
-            if self.graph_dict[node] == []:
-                return
-             
-            if node in visited:
-                return
-            
-            output.append(node)
-            visited.add(node)
-
-            for curr in self.graph_dict[node]:
-                bfs(curr)
-
-        bfs(node) 
-        return output
+    def bfsRecursion(self, node):     
+        pass 
             
 
 
@@ -92,11 +73,12 @@ class Graphs:
         while stack:
                 
                 val = stack.pop()
-                output.append(val)
-                visited.add(val)
+                if val not in visited:
+                    output.append(val)
+                    visited.add(val)
 
                 for curr in self.graph_dict[val]:
-                    if curr not in visited or curr not in stack:
+                    if curr not in visited:
                         stack.append(curr)
 
         return output
@@ -147,6 +129,7 @@ myGraph.addEdge("1", "0")
 myGraph.addEdge("0", "2")
 myGraph.addEdge("6", "5")
 
+print("Reference Adjacency List")
 print(myGraph.printGraph())
 print()
 print("Breadth First Search..")
@@ -154,7 +137,6 @@ print("Iteration")
 print(myGraph.bfsIteration("0"))
 print("recursion")
 print(myGraph.bfsRecursion("0"))
-
 print()
 print("Depth First Search..")
 print("Iteration")
