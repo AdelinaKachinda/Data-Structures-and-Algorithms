@@ -1,4 +1,85 @@
-class GraphTraversals:
+class Graphs:
 
     def __init__(self):
+        self.graph_dict = {}
+    
+    # adding a vertex or node
+    def addVertex(self, value):
+        
+        self.graph_dict.setdefault(value, [])
+
+    # adding an edge or line that connects two nodes
+    def addEdge(self, vertex1, vertex2):
+        
+        self.graph_dict.setdefault(vertex1, []).append(vertex2)
+        self.graph_dict.setdefault(vertex2, []).append(vertex1)
+
+
+
+    """
+    BFS GRAPH TRAVERSAL - USES QUEUES
+    1. Add a node/vertex from the graph to a queue of nodes to be “visited”.
+    2. Visit the topmost node in the queue, and mark it as such.
+    3. If that node has any neighbors, check to see if they have been “visited” or not.
+    4. Add any neighboring nodes that still need to be “visited” to the queue.
+    5. Remove the node we've visited from the queue and mark it as visited.
+    """
+
+    # ITERATIVE WAY
+    def bfsGraphTraversalIteration(self, start):
+
+        queue = [start]
+        visited = []
+        output = []
+
+        while queue:
+
+            val = queue.pop(0)
+            output.append(val)
+            visited.append(val)
+
+            for i in self.graph_dict[val]:
+
+                if i in visited or i in queue:
+                    pass
+                else:
+                    queue.append(i)
+            
+        return output 
+
+    # RECURSIVE WAY
+
+    def bfsGraphTraversalRecursion():
         pass
+
+
+
+
+    """
+    DFS GRAPH TRAVERSAL - USES STACKS
+    """
+
+
+    def printGraph(self):
+        return self.graph_dict
+    
+myGraph = Graphs()
+myGraph.addVertex("0")
+myGraph.addVertex("1")
+myGraph.addVertex("2")
+myGraph.addVertex("3")
+myGraph.addVertex("4")
+myGraph.addVertex("5")
+myGraph.addVertex("6")
+myGraph.addEdge("3", "1")
+myGraph.addEdge("3", "4")
+myGraph.addEdge("4", "2")
+myGraph.addEdge("4", "5")
+myGraph.addEdge("1", "2")
+myGraph.addEdge("1", "0")
+myGraph.addEdge("0", "2")
+myGraph.addEdge("6", "5")
+
+print(myGraph.printGraph())
+print(myGraph.bfsGraphTraversal("0"))
+
