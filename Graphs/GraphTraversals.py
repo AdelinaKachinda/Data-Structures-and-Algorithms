@@ -46,8 +46,9 @@ class Graphs:
             
         return output 
 
-    # BFS RECURSIVE WAY   --- revisit
-    def bfsRecursion(self, node):     
+
+    # BFS RECURSIVE WAY
+    def bfsRecursion(self):     
         pass 
             
 
@@ -57,10 +58,8 @@ class Graphs:
     1. Add the node to the top of the “visited” vertices stack.
     2. Marked it as “visited”.
     3. Check to see if it had any children:
-        if it did, we ensured that they had not been visited already, and then visited it. 
-        If not, we popped it off the stack.
-
-
+    4. if it did, we ensure that they had not been visited already, and then visited it. 
+    5. If not, we popped it off the stack.
     """
 
     # DFS ITERATIVE WAY
@@ -83,8 +82,7 @@ class Graphs:
 
         return output
 
-                
-                
+                         
     # DFS RECURSIVE WAY
     def dfsRecursion(self, node):
         
