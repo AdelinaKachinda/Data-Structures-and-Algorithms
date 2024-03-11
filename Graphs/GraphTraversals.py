@@ -48,8 +48,34 @@ class Graphs:
 
 
     # BFS RECURSIVE WAY
-    def bfsRecursion(self):     
-        pass 
+    def bfsRecursion(self, node):
+        output = []
+        visited = set()
+        queue = [node]
+
+        def bfs():
+            if not queue:  
+                return
+
+            while queue:  
+                val = queue.pop(0)
+                if val not in visited:  # If the node hasn't been visited
+                    visited.add(val)  # Mark as visited
+                    output.append(val)  # Add to output
+
+                    for i in self.graph_dict[val]:  # Add unvisited neighbors
+                        if i not in visited and i not in queue:
+                            queue.append(i)
+
+            bfs()  # Recalling the function to check if there's more to do (not really needed in true BFS)
+
+        bfs()  # Initial call to the recursive function
+        return output
+
+    
+            
+            
+
             
 
 
